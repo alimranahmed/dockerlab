@@ -53,6 +53,6 @@ See logs: `docker logs {container-id/name}` `-f` can be passed to follow the log
 
 Remove stopped container: `docker rm {container-id/name}`
 
-Copy file/directory: `docker cp {source-path} {container-id/name}:{destination-path}`
+Copy file/directory to/from container: `docker cp {source-path} {container-id/name}:{destination-path}`
 
 
