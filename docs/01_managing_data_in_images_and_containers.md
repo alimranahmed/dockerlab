@@ -44,3 +44,13 @@ Anonymous Volume: `docker run -v /app/data` - removed if container is removed/de
 Named Volume: `docker run -v valume-name:/app/data` - readonly, unknown storage location in host
 
 Bind Mount: `docker run /path/to/code-in-host:/app/code-in-container` - editable, synced with host's directory
+
+
+#### Manage Volume
+List: `docker volume ls`
+
+Create: `docker volume create {volume-name}`
+
+Inspect: `docker volume inspect {volume-name}`
+
+Delete: `docker volume rm {volume-name}` - containers that use this volume should be stopped.
