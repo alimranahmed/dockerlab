@@ -1,9 +1,10 @@
 {
-    "name": "al_imran/dockerlab",
+    "name": "alimranahmed/plainphp",
+    "version" : "0.0.1",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "AlImran\\Dockerlab\\": "src/"
+            "Alimranahmed\\PlainPHP\\": "src/"
         }
     },
     "authors": [
@@ -12,5 +13,8 @@
             "email": "al.imran.cse@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php" : "^8.4",
+        "guzzlehttp/guzzle": "^7.0"
+    }
 }
