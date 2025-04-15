@@ -20,11 +20,15 @@ class Request extends Psr7Request
             return self::$instance;
         }
 
+        $rawInput = file_get_contents('php://input');
+
+        $json = json_decode($rawInput, true) ?: [];
+
         $instance = new self(
             $_SERVER['REQUEST_METHOD'],
             trim(strtolower($_SERVER['REQUEST_URI'])),
             [],
-            Stream::create(json_encode([...$_GET, ...$_POST]))
+            Stream::create(json_encode([...$_GET, ...$_POST, ...$json]))
         );
 
         self::$instance = $instance;
