@@ -10,10 +10,10 @@ class MySql
 
     public function __construct()
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $db = "phplab";
+        $servername = getenv('MYSQL_DB_HOST');
+        $username = getenv("MYSQL_DB_USERNAME");
+        $password = getenv("MYSQL_DB_PASSWORD");
+        $db = getenv('MYSQL_DB_DATABASE');
 
         if (self::$connection === null) {
             self::$connection = new PDO("mysql:host=$servername;dbname=$db", $username, $password);

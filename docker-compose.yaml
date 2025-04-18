@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+    mysql:
+        image: mysql:latest
+        volumes:
+            -   data:/var/lib/mysql
+#        environment:
+#            MYSQL_ROOT_PASSWORD: "secret"
+        env_file:
+            - ./env/mysql.env
+    backend:
+        build: ./backend-php
+        ports:
+            - '3000:3000'
+        volumes:
+            - logs:/app/logs
+            - ./backend-php:/app
+            - /app/vendor
+        env_file:
+            -   ./env/backend.env
+        depends_on:
+            -   mysql
+    frontend:
+        build: ./frontend-vue
+        ports:
+            -   '8080:5173'
+        env_file:
+            -   env/frontend.env
+        volumes:
+            -   ./frontend-vue/src:/app/src
+        depends_on:
+            -   backend
+        # Equivalent to -it in docker run command
+#        stdin_open: true
+#        tty: true
+volumes:
+    data:
+    logs:
