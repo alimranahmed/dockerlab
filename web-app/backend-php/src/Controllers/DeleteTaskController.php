@@ -10,6 +10,6 @@ class DeleteTaskController
     public function __invoke(Request $request): void
     {
         $db = new MySql();
-        $db->execute("DELETE FROM tasks WHERE name = '".$request->get('name')."'");
+        $db->execute("DELETE FROM tasks WHERE id = '".$request->get('id')."'");
     }
 }

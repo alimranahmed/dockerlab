@@ -12,6 +12,9 @@ class StoreTaskController
         $mysql = new MySql();
         $name = $request->get('task');
         $mysql->execute("INSERT INTO tasks (name) VALUES('$name')");
+
+        error_log('Tasks created', 3, '/app/logs/tasks.log');
+
         header('Content-Type: application/json');
         echo json_encode(['message' => 'Task added successfully']);
     }

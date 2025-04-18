@@ -16,7 +16,7 @@ const fetchTasks = async () => {
 
 const deleteTask = async (task) => {
   await fetch(
-      `${url}/tasks/?name=${task}`,
+      `${url}/tasks/?id=${task.id}`,
       {
         method: "DELETE",
       }
@@ -48,7 +48,7 @@ const addTask = async () => {
 
   <ul class="list-disc list-inside">
     <li v-for="task in tasks">
-      {{task}}
+      {{task.name}}
       <a @click.prevent="deleteTask(task)" class="text-red-400 cursor-pointer">x</a>
     </li>
   </ul>

@@ -5,7 +5,7 @@ include '../vendor/autoload.php';
 use Alimranahmed\PlainPHP\Controllers\DeleteTaskController;
 use Alimranahmed\PlainPHP\Controllers\HomeController;
 use Alimranahmed\PlainPHP\Controllers\StartWarsController;
-use Alimranahmed\PlainPHP\Controllers\CreateTaskController;
+use Alimranahmed\PlainPHP\Controllers\TaskListController;
 use Alimranahmed\PlainPHP\Controllers\StoreTaskController;
 use Alimranahmed\PlainPHP\Exceptions\HttpNotFound;
 use Alimranahmed\PlainPHP\Exceptions\MethodNotAllowed;
@@ -16,7 +16,7 @@ use Alimranahmed\PlainPHP\Support\Http\Router\Router;
 Cors::allowAll();
 
 Router::get('/', HomeController::class);
-Router::get('/tasks', CreateTaskController::class);
+Router::get('/tasks', TaskListController::class);
 Router::post('/tasks', StoreTaskController::class);
 Router::delete('/tasks', DeleteTaskController::class);
 Router::get('/star-wars', StartWarsController::class);

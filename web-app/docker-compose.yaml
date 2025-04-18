@@ -4,8 +4,7 @@ services:
         image: mysql:latest
         volumes:
             -   data:/var/lib/mysql
-#        environment:
-#            MYSQL_ROOT_PASSWORD: "secret"
+            -   ./backend-php/migrations:/docker-entrypoint-initdb.d
         env_file:
             - ./env/mysql.env
     backend:
@@ -13,7 +12,6 @@ services:
         ports:
             - '3000:3000'
         volumes:
-            - logs:/app/logs
             - ./backend-php:/app
             - /app/vendor
         env_file:
@@ -35,4 +33,3 @@ services:
 #        tty: true
 volumes:
     data:
-    logs:
