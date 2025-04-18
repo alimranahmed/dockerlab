@@ -3,6 +3,7 @@
 namespace Alimranahmed\PlainPHP\Controllers;
 
 use Alimranahmed\PlainPHP\Support\DB\MySql;
+use Alimranahmed\PlainPHP\Support\Log;
 use Alimranahmed\PlainPHP\Support\Http\Request;
 
 class StoreTaskController
@@ -13,7 +14,7 @@ class StoreTaskController
         $name = $request->get('task');
         $mysql->execute("INSERT INTO tasks (name) VALUES('$name')");
 
-        error_log('Tasks created', 3, '/app/logs/tasks.log');
+        Log::info("Tasks created: {$name}");
 
         header('Content-Type: application/json');
         echo json_encode(['message' => 'Task added successfully']);
