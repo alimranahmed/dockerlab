@@ -1,0 +1,26 @@
+services:
+    server:
+        image: nginx:stable-alpine
+        ports:
+            - '8000:80'
+        volumes:
+            -   ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    php:
+        build:
+            context: ./dockerfiles
+            dockerfile: php.dockerfile
+        volumes:
+            -   ./src:/var/www/html:delegated # delegated to make it efficient while syncing, it won't sync immediately back with host if changed in container
+
+    mysql:
+        image: mysql:latest
+        env_file:
+            -   ./env/mysql.env
+    composer:
+        build:
+            context: ./dockerfiles
+            dockerfile: composer.dockerfile
+        volumes:
+            -   ./src:/var/www/html
+#    artisan:
+#    npm:
