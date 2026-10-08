@@ -5,7 +5,7 @@
 - `RUN` to execute a command while building the image
 - `EXPOSE {port number}` to publish a port from the docker container
 - `CMD ["{cmd-part1}", "{cmd-part2}"]` to execute a command while a container is created from that image,
-  `CMD` takes an array of string that separate the command by space. It should be the lass line of the Dockerfile
+  `CMD` takes an array of string that separate the command by space. It should be the last line of the Dockerfile
 
 #### Building container from image
 `docker build -t {name}:{tag} .`

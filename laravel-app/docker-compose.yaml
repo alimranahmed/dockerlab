@@ -1,6 +1,8 @@
 services:
     server:
-        image: nginx:stable-alpine
+        build:
+            context: .
+            dockerfile: dockerfiles/nginx.dockerfile
         ports:
             - '8000:80'
         volumes:
@@ -11,11 +13,10 @@ services:
             - mysql
     php:
         build:
-            context: ./dockerfiles
-            dockerfile: php.dockerfile
+            context: .
+            dockerfile: dockerfiles/php.dockerfile
         volumes:
             - ./src:/var/www/html:delegated # delegated to make it efficient while syncing, it won't sync immediately back with host if changed in container
-
     mysql:
         image: mysql:latest
         env_file:
@@ -28,8 +29,8 @@ services:
             - ./src:/var/www/html
     artisan:
         build:
-            context: ./dockerfiles
-            dockerfile: php.dockerfile
+            context: .
+            dockerfile: dockerfiles/php.dockerfile
         volumes:
             - ./src:/var/www/html
         entrypoint: ["php", "/var/www/html/artisan"]
